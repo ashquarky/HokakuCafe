@@ -111,7 +111,7 @@ export LIBPATHS	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib)
 all: $(BUILD)
 
 $(BUILD): $(CURDIR)/source/ios_kernel/ios_kernel.bin.h
-	@[ -d $@ ] || mkdir -p $@
+	@$(shell [ ! -d $(BUILD) ] && mkdir -p $(BUILD))
 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
 
 $(CURDIR)/source/ios_kernel/ios_kernel.bin.h: $(CURDIR)/source/ios_usb/ios_usb.bin.h $(CURDIR)/source/ios_net/ios_net.bin.h $(CURDIR)/source/ios_fpd/ios_fpd.bin.h 
