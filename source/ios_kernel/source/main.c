@@ -1,6 +1,7 @@
 #include "imports.h"
 #include "net.h"
 #include "fpd.h"
+#include "nsec.h"
 
 #define USB_PHYS_CODE_BASE      0x101312D0
 #define NET_PHYS_CODE_BASE      0x12432000
@@ -90,6 +91,16 @@ int _main()
     // apply ios_fpd patches
     run_ios_fpd_patches();
 
+    // copy ios_nsec
+    payloads = (payload_info_t *) 0x00160000;
+    kernel_memcpy((void *) NSEC_PADDR(NSEC_TEXT_VADDR), payloads->data, payloads->size);
+
+    // memset ios_nsec bss
+    kernel_memset((void *) NSEC_PADDR(NSEC_BSS_VADDR), 0, 0x6000);
+
+    // apply ios_nsec patches
+    run_ios_nsec_patches();
+
     *(volatile uint32_t*) (0x1555500) = 0;
 
     /* REENABLE MMU */
@@ -105,6 +116,8 @@ int _main()
     setClientCapability(7, 11, 0xFFFFFFFFFFFFFFFF);
     // give IOS-FPD full access to FS
 	setClientCapability(12, 11, 0xFFFFFFFFFFFFFFFF);
+    // give IOS-NSEC full access to FS
+    setClientCapability(9, 11, 0xFFFFFFFFFFFFFFFF);
 
     return 0;
 }

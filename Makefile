@@ -114,7 +114,7 @@ $(BUILD): $(CURDIR)/source/ios_kernel/ios_kernel.bin.h
 	@$(shell [ ! -d $(BUILD) ] && mkdir -p $(BUILD))
 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
 
-$(CURDIR)/source/ios_kernel/ios_kernel.bin.h: $(CURDIR)/source/ios_usb/ios_usb.bin.h $(CURDIR)/source/ios_net/ios_net.bin.h $(CURDIR)/source/ios_fpd/ios_fpd.bin.h 
+$(CURDIR)/source/ios_kernel/ios_kernel.bin.h: $(CURDIR)/source/ios_usb/ios_usb.bin.h $(CURDIR)/source/ios_net/ios_net.bin.h $(CURDIR)/source/ios_fpd/ios_fpd.bin.h $(CURDIR)/source/ios_nsec/ios_nsec.bin.h
 	@$(MAKE) -j1 --no-print-directory -C $(CURDIR)/source/ios_kernel -f $(CURDIR)/source/ios_kernel/Makefile
 
 $(CURDIR)/source/ios_usb/ios_usb.bin.h: 
@@ -126,6 +126,9 @@ $(CURDIR)/source/ios_net/ios_net.bin.h:
 $(CURDIR)/source/ios_fpd/ios_fpd.bin.h: 
 	@$(MAKE) -j1 --no-print-directory -C $(CURDIR)/source/ios_fpd -f $(CURDIR)/source/ios_fpd/Makefile
 
+$(CURDIR)/source/ios_nsec/ios_nsec.bin.h:
+	@$(MAKE) -j1 --no-print-directory -C $(CURDIR)/source/ios_nsec -f $(CURDIR)/source/ios_nsec/Makefile
+
 #-------------------------------------------------------------------------------
 clean:
 	@echo clean ...
@@ -134,6 +137,7 @@ clean:
 	@$(MAKE) --no-print-directory -C $(CURDIR)/source/ios_usb -f  $(CURDIR)/source/ios_usb/Makefile clean
 	@$(MAKE) --no-print-directory -C $(CURDIR)/source/ios_net -f  $(CURDIR)/source/ios_net/Makefile clean
 	@$(MAKE) --no-print-directory -C $(CURDIR)/source/ios_fpd -f  $(CURDIR)/source/ios_fpd/Makefile clean
+	@$(MAKE) --no-print-directory -C $(CURDIR)/source/ios_nsec -f  $(CURDIR)/source/ios_nsec/Makefile clean
 
 #-------------------------------------------------------------------------------
 else
