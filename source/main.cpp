@@ -82,8 +82,8 @@ int main(int argc, char **argv)
 
     if (config.enabled) {
         // write config to mem
-        memcpy((void*)0xF4160000, &config, sizeof(config));
-        DCStoreRange((void*)0xF4160000, sizeof(config));
+        memcpy((void*)0xF4170000, &config, sizeof(config));
+        DCStoreRange((void*)0xF4170000, sizeof(config));
 
         // run the ios exploit
         ExecuteIOSExploit();

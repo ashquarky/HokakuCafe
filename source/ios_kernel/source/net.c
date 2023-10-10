@@ -27,7 +27,7 @@ void run_ios_net_patches(void)
     _iosMapSharedUserExecution(&map_info);
 
     // Copy configuration to the end of the text section
-    Configuration_t *configuration = (Configuration_t *)0x00160000;
+    Configuration_t *configuration = (Configuration_t *)0x00170000;
     kernel_memcpy((void*)_text_end, configuration, sizeof(*configuration));
 
     // replace all sendFrame functions
