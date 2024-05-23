@@ -25,11 +25,27 @@ void run_ios_nsec_patches(void) {
     map_info.cached = 0xFFFFFFFF;
     _iosMapSharedUserExecution(&map_info);
 
-    *(volatile uint32_t *) NSEC_PADDR(0xe1008918) = ARM_BL(0xe1008918, SSL_do_handshake_hook);
+    // kinda sucks but
+    int version = *(volatile uint32_t *) NSEC_PADDR(0xe1008918) == 0xeb004bf5 ? 15702 : 15808;
 
-    *(volatile uint32_t *) NSEC_PADDR(0xe1007620) = ARM_BL(0xe1007620, SSL_read_hook);
-    *(volatile uint32_t *) NSEC_PADDR(0xe10105c4) = ARM_BL(0xe10105c4, SSL_read_hook);
+    *(volatile uint32_t *) NSEC_PADDR(_system_version) = version;
 
-    *(volatile uint32_t *) NSEC_PADDR(0xe10074a0) = ARM_BL(0xe10074a0, SSL_write_hook);
-    *(volatile uint32_t *) NSEC_PADDR(0xe10104a4) = ARM_BL(0xe10104a4, SSL_write_hook);
+    if (version == 15848) {
+        *(volatile uint32_t *) NSEC_PADDR(0xe1008a08) = ARM_BL(0xe1008a08, SSL_do_handshake_hook);
+
+        *(volatile uint32_t *) NSEC_PADDR(0xe1007710) = ARM_BL(0xe1007710, SSL_read_hook);
+        *(volatile uint32_t *) NSEC_PADDR(0xe10106b4) = ARM_BL(0xe10106b4, SSL_read_hook);
+
+        *(volatile uint32_t *) NSEC_PADDR(0xe1007590) = ARM_BL(0xe1007590, SSL_write_hook);
+        *(volatile uint32_t *) NSEC_PADDR(0xe1010594) = ARM_BL(0xe1010594, SSL_write_hook);
+    } else { // 15702
+        *(volatile uint32_t *) NSEC_PADDR(0xe1008918) = ARM_BL(0xe1008918, SSL_do_handshake_hook);
+
+        *(volatile uint32_t *) NSEC_PADDR(0xe1007620) = ARM_BL(0xe1007620, SSL_read_hook);
+        *(volatile uint32_t *) NSEC_PADDR(0xe10105c4) = ARM_BL(0xe10105c4, SSL_read_hook);
+
+        *(volatile uint32_t *) NSEC_PADDR(0xe10074a0) = ARM_BL(0xe10074a0, SSL_write_hook);
+        *(volatile uint32_t *) NSEC_PADDR(0xe10104a4) = ARM_BL(0xe10104a4, SSL_write_hook);
+    }
+
 }

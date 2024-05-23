@@ -12,7 +12,7 @@ SECTIONS {
         *(.data*);
     }
     _text_end = .;
-    PROVIDE(_configuration = .);
+    PROVIDE(_system_version = .);
 
     . = 0xe12e9000;
 

@@ -4,7 +4,6 @@
 
 #include "ios.h"
 #include "fsa.h"
-#include "openssl.h"
 #include "../../common/interface.h"
 #include "../../common/config.h"
 
@@ -13,6 +12,9 @@ int fsa_handle = -1;
 int file_handle = -1;
 char *line_buffer = NULL;
 #define LINE_BUFFER_SIZE 1024
+
+extern const int _system_version;
+#include "openssl.h"
 
 static int open_file() {
     if (semaphore < 0) {

@@ -26,6 +26,11 @@ PROVIDE(IOS_WaitSemaphore = 0xe108ebf4);
 PROVIDE(IOS_SignalSemaphore = 0xe108ebfc);
 PROVIDE(IOS_DestroySemaphore = 0xe108ec04);
 
-PROVIDE(SSL_do_handshake = 0xe101b8f4);
-PROVIDE(SSL_read = 0xe101bb30);
-PROVIDE(SSL_write = 0xe101ba50);
+PROVIDE(SSL_do_handshake_15702 = 0xe101b8f4);
+PROVIDE(SSL_do_handshake_15848 = 0xe101b9e8);
+
+PROVIDE(SSL_read_15702 = 0xe101bb30);
+PROVIDE(SSL_read_15848 = 0xe101bc24);
+
+PROVIDE(SSL_write_15702 = 0xe101ba50);
+PROVIDE(SSL_write_15848 = 0xe101bb44);
