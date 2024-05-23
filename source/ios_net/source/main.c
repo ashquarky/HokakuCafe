@@ -141,7 +141,7 @@ void writeData(void* data, uint32_t size, const char* interface)
             IOS_GetAbsTimeCalendar(&ctime);
 
             char name[512];
-            snprintf(name, sizeof(name), "/vol/storage_framedump/HokakuCafe/%04ld-%02ld-%02ld_%02ld-%02ld-%02ld.pcap",
+            snprintf(name, sizeof(name), "/vol/storage_framedump/HokakuCafe/%04ld-%02ld-%02ld_%02ld-%02ld-%02ld.pcapng",
                 ctime.year, ctime.month, ctime.day, ctime.hour, ctime.minute, ctime.second);
 
             res = FSA_OpenFile(fsaHandle, name, "w", &fileHandle);
