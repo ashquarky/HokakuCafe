@@ -205,10 +205,7 @@ void writeData(void* data, uint32_t size, const char* interface)
 
             const char* filter;
             int filter_size;
-            if (_configuration.mode == MODE_ALL) {
-                filter = "\0";
-                filter_size = 1;
-            } else if (_configuration.mode == MODE_IPV4) {
+            if (_configuration.mode == MODE_IPV4) {
                 filter = "\0ip";
                 filter_size = 3;
             } else if (_configuration.mode == MODE_TCP) {
@@ -217,9 +214,12 @@ void writeData(void* data, uint32_t size, const char* interface)
             } else if (_configuration.mode == MODE_UDP) {
                 filter = "\0udp";
                 filter_size = 4;
-            } else { //if (_configuration.mode == MODE_PRUDP) {
+            } else if (_configuration.mode == MODE_PRUDP) {
                 filter = "\0prudpv0 || prudpv1";
                 filter_size = 19;
+            } else { //if (_configuration.mode == MODE_ALL) {
+                filter = "\0";
+                filter_size = 1;
             }
             filter_opt.option_length = filter_size;
             filter_size = ALIGN(filter_opt.option_length, 4);
