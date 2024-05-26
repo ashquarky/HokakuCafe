@@ -26,7 +26,7 @@ void run_ios_nsec_patches(void) {
     _iosMapSharedUserExecution(&map_info);
 
     // kinda sucks but
-    int version = *(volatile uint32_t *) NSEC_PADDR(0xe1008918) == 0xeb004bf5 ? 15702 : 15808;
+    int version = *(volatile uint32_t *) NSEC_PADDR(0xe1008918) == 0xeb004bf5 ? 15702 : 15848;
 
     *(volatile uint32_t *) NSEC_PADDR(_system_version) = version;
 
