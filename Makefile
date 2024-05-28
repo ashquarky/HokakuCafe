@@ -23,6 +23,12 @@ else
 TARGET		:=	HokakuCafe
 endif
 
+ifeq ($(LEGACY_15702), 1)
+TARGET := $(TARGET).v15702
+else
+TARGET := $(TARGET).v15848
+endif
+
 BUILD		:=	build
 SOURCES		:=	source
 DATA		:=	data

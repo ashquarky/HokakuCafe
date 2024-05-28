@@ -1,0 +1,31 @@
+PROVIDE(printf = 0xE1088FC8);
+
+PROVIDE(memcmp = 0xe108d37c);
+PROVIDE(memcpy = 0xE108D464);
+PROVIDE(memset = 0xE108D500);
+PROVIDE(strncpy = 0xE108DF88);
+PROVIDE(snprintf = 0xE108DF20);
+
+PROVIDE(IOS_CreateThread = 0xE108EA04);
+PROVIDE(IOS_StartThread = 0xE108EA3C);
+PROVIDE(IOS_GetThreadPriority = 0xE108EA54);
+PROVIDE(IOS_CreateMessageQueue = 0xE108EA64);
+PROVIDE(IOS_DestroyMessageQueue = 0xE108EA6C);
+PROVIDE(IOS_ReceiveMessage = 0xE108EA84);
+PROVIDE(IOS_Alloc = 0xE108EB3C);
+PROVIDE(IOS_AllocAligned = 0xE108EB44);
+PROVIDE(IOS_Free = 0xE108EB4C);
+PROVIDE(IOS_Open = 0xE108EB9C);
+PROVIDE(IOS_Close = 0xE108EBA4);
+PROVIDE(IOS_Ioctl = 0xE108EBC4);
+PROVIDE(IOS_Ioctlv = 0xE108EBCC);
+PROVIDE(IOS_GetAbsTime64 = 0xE108EAEC); /* not sure on these two */
+PROVIDE(IOS_GetAbsTimeCalendar = 0xE108EAF4);
+PROVIDE(IOS_CreateSemaphore = 0xE108ECBC);
+PROVIDE(IOS_WaitSemaphore = 0xE108ECC4);
+PROVIDE(IOS_SignalSemaphore = 0xE108ECCC);
+PROVIDE(IOS_DestroySemaphore = 0xE108ECD4);
+
+PROVIDE(SSL_do_handshake = 0xe101b9e8);
+PROVIDE(SSL_read = 0xe101bc24);
+PROVIDE(SSL_write = 0xe101bb44);

@@ -49,6 +49,14 @@ LDFLAGS := -nostartfiles -nodefaultlibs -mbig-endian \
 
 LIBS	:= -lgcc
 
+ifeq ($(LEGACY_15702), 1)
+LDFLAGS += -Wl,-T $(TOPDIR)/imports.v15702.ld
+CFLAGS += -DIOSU_VERSION=15702
+else
+LDFLAGS += -Wl,-T $(TOPDIR)/imports.v15848.ld
+CFLAGS += -DIOSU_VERSION=15848
+endif
+
 #-------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level
 # containing include and lib
