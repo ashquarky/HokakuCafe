@@ -74,7 +74,8 @@ int main(int argc, char **argv)
             fputs("[General]\n"
                   "Enabled=True\n\n"
                   "[Net]\n"
-                  "Mode=ALL ; Can be either ALL, IPV4, TCP, UDP or PRUDP\n"
+                  "; Can be either ALL, IPV4, TCP, UDP or PRUDP\n"
+                  "Mode=ALL\n"
                   "MaxPacketSize=0x800\n", f);
             fclose(f);
         }
